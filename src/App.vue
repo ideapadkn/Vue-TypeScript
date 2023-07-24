@@ -10,6 +10,7 @@ import { computed, ref } from 'vue'
 const word = ref('john')
 const letters = ref<string[]>([])
 const correctLetters = computed(() => letters.value.filter((x) => word.value.includes(x)))
+const wrongLetters = computed(() => letters.value.filter((x) => !word.value.includes(x)))
 
 window.addEventListener('keydown', ({ key }) => {
   // фильтрация кирилицы FIXME:
@@ -25,10 +26,11 @@ window.addEventListener('keydown', ({ key }) => {
     {{ word }}
     {{ letters }}
     {{ correctLetters }}
+    {{ wrongLetters }}
     <GameHeader />
     <div class="game-container">
       <GameFigure />
-      <GameWrongLetters />
+      <GameWrongLetters :wrong-letters="wrongLetters" />
       <GameWord :word="word" :correct-letters="correctLetters" />
     </div>
     <!-- Container for final message -->
