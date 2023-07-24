@@ -11,12 +11,23 @@ const word = ref('john')
 const letters = ref<string[]>([])
 const correctLetters = computed(() => letters.value.filter((x) => word.value.includes(x)))
 const wrongLetters = computed(() => letters.value.filter((x) => !word.value.includes(x)))
+const notification = ref<InstanceType<typeof GameNotification> | null>(null)
+
 
 window.addEventListener('keydown', ({ key }) => {
+  if(letters.value.includes(key)) {
+    notification.value?.open()
+    setTimeout(() => {
+      notification.value?.close()
+    }, 3000)
+    return
+  }
+
   // фильтрация кирилицы FIXME:
   // if(/[а-яА-ЯёЁ]/.test(key)) {
   //   console.log(key)
   // }
+
   letters.value.push(key.toLocaleLowerCase())
 })
 </script>
@@ -36,6 +47,6 @@ window.addEventListener('keydown', ({ key }) => {
     <!-- Container for final message -->
     <GamePopup v-if="false" />
     <!-- Notification -->
-    <GameNotification />
+    <GameNotification ref="notification"/>
   </div>
 </template>
