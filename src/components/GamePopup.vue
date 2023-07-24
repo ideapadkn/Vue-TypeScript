@@ -39,4 +39,4 @@ const emit = defineEmits<{
       <button @click="emit('restart')">Restart</button>
     </div>
   </div>
-</template>
+</template> 

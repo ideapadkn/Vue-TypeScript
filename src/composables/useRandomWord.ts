@@ -1,5 +1,5 @@
 import { onMounted, ref } from "vue"
-import { getRandomName } from "@/api/getRandomName"
+import { getRandomName } from "@/api/getRandomName" 
 
 export const useRandomWord = () => {
   const word = ref('')

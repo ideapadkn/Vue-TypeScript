@@ -19,4 +19,4 @@ defineExpose({
   <div class="notification-container" :class="{show: isVisible}">
     <p>Вы уже вводили этот символ</p>
   </div>
-</template>
+</template> 

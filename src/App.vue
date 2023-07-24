@@ -7,14 +7,11 @@ import GamePopup from './components/GamePopup.vue'
 import GameNotification from './components/GameNotification.vue'
 import { computed, ref, watch } from 'vue'
 import { useRandomWord } from './composables/useRandomWord'
+import { useLetters } from './composables/useLetters'
 
 const { word, getRandomWord } = useRandomWord()
+const { letters, correctLetters, wrongLetters, isLose, isWin } = useLetters(word)
 
-const letters = ref<string[]>([])
-const correctLetters = computed(() => letters.value.filter((x) => word.value.includes(x)))
-const wrongLetters = computed(() => letters.value.filter((x) => !word.value.includes(x)))
-const isLose = computed(() => wrongLetters.value.length === 6)
-const isWin = computed(() => [...word.value].every((x) => correctLetters.value.includes(x)))
 const notification = ref<InstanceType<typeof GameNotification> | null>(null)
 const popup = ref<InstanceType<typeof GamePopup> | null>(null)
 

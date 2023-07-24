@@ -5,4 +5,4 @@ export const getRandomName = async () => {
     'https://api.randomdatatools.ru/?unescaped=false&params=FirstName'
   )
   return data.FirstName
-}
+} 
